@@ -262,12 +262,12 @@ function bootstrap() {
 
 function tx_reindex() {
         echo " "
-        echo -e "     ${CYAN}Is txreindex required on Daemon start?"
-        echo "       1) Yes"
+        echo -e "     ${CYAN}Is txreindex required on Daemon start? Will take a long time...Type Yes to confirm"
+        echo "       Yes) Yes"
         echo -e "       2) No${CN}"
         read -p "     " n
         case $n in
-        1) TX=1;;
+        Yes) TX=1;;
         2) TX=2;;
         *) echo -e "     ${RED}invalid option selected.. :( try again${CN}"  ;tx_reindex;
         esac
@@ -290,7 +290,7 @@ function add_to_cron() {
 
 function start_daemon () {
         tx_reindex
-        if [ $TX == 1 ]
+        if [ $TX == Yes ]
         then
                 echo -n "     Starting $COIN_NAME daemon with -reindex enabled"
                 dots
