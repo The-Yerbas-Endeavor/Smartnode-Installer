@@ -124,27 +124,6 @@ function detect_version() {
         fi
 }
 
-function install_packages() { 
-        echo -e "     ${CYAN}Install firts time packages? Need's sudo privlages to do so!"
-        echo "       1) Yes"
-        echo -e "       2) No${CN}"
-        read -p "     " n
-        case $n in
-        1) PACK=1;;
-        2) PACK=2;;
-        *) echo -e "     ${RED}invalid option selected.. :( try again${CN}"  ;packages;
-        esac
-        echo " "
-        if [ $PACK == 1 ]
-                then
-                wget -q https://raw.githubusercontent.com/The-Yerbas-Endeavor/Smartnode-Installer/main/firstrun.sh && bash firstrun.sh
-          else
-                echo -n "     Skipping Packages update"
-                dots
-                echo -e "${YELLOW}Skipped.${CN}"
-        fi
-}
-
 
 function uninstall_old() {
         if [ $INS_TYPE == "update" ]
@@ -419,7 +398,6 @@ power_cache
 bootstrap
 detect_os
 detect_version
-install_packages
 uninstall_old
 download_node
 update_config
