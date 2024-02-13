@@ -391,7 +391,7 @@ function check_node() {
                        echo -e "${YG}make sure server is running and you are connecting to the correct RPC port ${CN}"
                 elif [ $(grep -c "WAITING_FOR_PROTX" "$File") -eq 1 ];
                         then
-                       echo -e "${YG} Waiting for ProTx to appear on-chain ${CN}"
+                       echo -e "${YG} NOT READY! Waiting for ProTx to appear on-chain.${CN}"
                 else
                         echo -e "${RED}Something is up, check your .conf setings.${CN}"
                 fi
