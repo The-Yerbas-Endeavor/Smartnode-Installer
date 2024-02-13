@@ -162,12 +162,12 @@ function install_packages() {
                 sudo ufw allow ssh
                 sudo ufw allow 15420/tcp
                 sudo ufw enable
-                echo   "[sshd]
-                        enabled = true
-                        port = 22
-                        filter = sshd
-                        logpath = /var/log/auth.log
-                        maxretry = 3" | sudo tee -a /etc/fail2ban/jail.local
+                echo "[sshd]
+                enabled = true
+                port = 22
+                filter = sshd
+                logpath = /var/log/auth.log
+                maxretry = 3" | sudo tee -a /etc/fail2ban/jail.local
                 echo -e "${YELLOW}Packages complete...${NC}"
           else
                 echo -n "     Skipping Packages update"
@@ -213,7 +213,6 @@ function download_node() {
         if [ $osType == "x86_64" ] && [ $VERSION_ID == "22.04" ] 
                 then
                 mkdir temp
-                mkdir yerbas-build
                 curl -L $WALLET_TAR_U_22 | tar xz -C ./temp
                 mv temp/* yerbas-build
                 rm -r temp
@@ -221,7 +220,6 @@ function download_node() {
         elif [ $osType == "x86_64" ] && [ $VERSION_ID == "20.04" ]
                 then
                 mkdir temp
-                mkdir yerbas-build
                 curl -L $WALLET_TAR_U_20 | tar xz -C ./temp
                 mv temp/* yerbas-build
                 rm -r temp
@@ -229,7 +227,6 @@ function download_node() {
         elif [ $osType == "aarch64" ]
                 then
                 mkdir temp
-                mkdir yerbas-build
                 curl -L $WALLET_TAR_ARM_64 | tar xz -C ./temp
                 mv temp/* yerbas-build
                 rm -r temp
