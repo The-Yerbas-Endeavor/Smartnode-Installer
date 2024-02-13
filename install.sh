@@ -383,11 +383,19 @@ function check_node() {
                 dots
                 cd ~/$COIN_FOLDER &>> ~/.err.log
                 ./$COIN_CLI smartnode status &>> ~/.err.log
-                cd ~
-                if ! grep -q "READY Ready" "$File"; then
-                             echo -e "${YG}READY Ready. Your Smartnode is ready to rock! ${CN}"
+                if [ $(grep -c "READY Ready" "$File") -eq 1 ]; 
+                        then
+                        echo -e "${YG}READY Ready. Your Smartnode is ready to rock! ${CN}"
+                        fi
+                if [ $(grep -c "make sure server is running" "$File") -eq 1 ];
+                        then
+                       echo -e "${YG}make sure server is running and you are connecting to the correct RPC port ${CN}"
+                       fi
+                if [ $(grep -c "WAITING_FOR_PROTX" "$File") -eq 1 ];
+                        then
+                       echo -e "${YG} Waiting for ProTx to appear on-chain ${CN}"
                         else
-                                echo -e "${RED}May still be loading, check back in a few.${CN}"
+                                echo -e "${RED}Something is up, check your .conf setings.${CN}"
                         fi
         
 }
