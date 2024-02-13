@@ -295,7 +295,7 @@ function start_daemon () {
                 echo -n "     Starting $COIN_NAME daemon with -reindex enabled"
                 dots
                 cd ~/$COIN_FOLDER
-                #./$COIN_DAEMON -reindex &>> ~/.err.log
+                ./$COIN_DAEMON -reindex &>> ~/.err.log
                 #add error catching if daemon doesnt start
                 cd ~
                 echo -e "${YG}Success.${CN}"
@@ -386,9 +386,7 @@ function check_node() {
                 ./$COIN_CLI smartnode status &>> ~/.err.log
                 cd ~
                 if ! grep -q "READY Ready" "$File"; then
-                             echo -e "${YG}READY Ready.${CN}"
-                             echo -e "${YG}Success.${CN}"
-
+                             echo -e "${YG}READY Ready. Your Smartnode is ready to rock! ${CN}"
                         else
                                 echo -e "${RED}May still be loading, check back in a few.${CN}"
                         fi
