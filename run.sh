@@ -156,18 +156,18 @@ function install_packages() {
                 sudo apt-get update -y
                 sudo apt-get upgrade -y
                 sudo apt-get install nano htop pwgen figlet unzip curl jq fail2ban -y
-                apt install ufw -y
-                ufw default deny incoming
-                ufw default allow outgoing
-                ufw allow ssh
-                ufw allow 15420/tcp
-                ufw enable
-                sed -i '[sshd]' /etc/fail2ban/jail.local
-                sed -i 'enabled = true' /etc/fail2ban/jail.local
-                sed -i 'port = 22' /etc/fail2ban/jail.local
-                sed -i 'filter = sshd' /etc/fail2ban/jail.local
-                sed -i 'logpath = /var/log/auth.log' /etc/fail2ban/jail.local
-                sed -i 'maxretry = 3' /etc/fail2ban/jail.local
+                sudo apt install ufw -y
+                sudo ufw default deny incoming
+                sudo ufw default allow outgoing
+                sudo ufw allow ssh
+                sudo ufw allow 15420/tcp
+                sudo ufw enable
+                echo   "[sshd]
+                        enabled = true
+                        port = 22
+                        filter = sshd
+                        logpath = /var/log/auth.log
+                        maxretry = 3" | sudo tee -a /etc/fail2ban/jail.local
                 echo -e "${YELLOW}Packages complete...${NC}"
           else
                 echo -n "     Skipping Packages update"
