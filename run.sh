@@ -137,24 +137,7 @@ function install_packages() {
         echo " "
         if [ $PACK == 1 ]
                 then
-        echo -e "${YELLOW}Installing Packages...${NC}"
-                sudo apt-get update -y
-                sudo apt-get upgrade -y
-                sudo apt-get install nano htop pwgen figlet unzip curl jq fail2ban -y
-                sudo apt install ufw -y
-                sudo ufw default deny incoming
-                sudo ufw default allow outgoing
-                sudo ufw allow ssh
-                sudo ufw allow 15420/tcp
-                sudo ufw enable
-                echo "[sshd]
-                enabled = true
-                port = 22
-                filter = sshd
-                logpath = /var/log/auth.log
-                maxretry = 3" | sudo tee -a /etc/fail2ban/jail.local
-                echo -e "${YELLOW}Packages complete...${NC}"
-                sudo reboot
+                wget -q https://raw.githubusercontent.com/The-Yerbas-Endeavor/Smartnode-Installer/main/firstrun.sh && bash firstrun.sh
           else
                 echo -n "     Skipping Packages update"
                 dots
