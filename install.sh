@@ -383,7 +383,7 @@ function check_node() {
                 dots
                 cd ~/$COIN_FOLDER &>> ~/.err.log
                 ./$COIN_CLI smartnode status &>> ~/.err.log
-                cd ~/
+                cd ~
                 if [ $(grep -c "READY Ready" "$File") -eq 1 ]; 
                         then
                         echo -e "${YG}READY Ready. Your Smartnode is ready to rock! ${CN}"
