@@ -263,11 +263,11 @@ function bootstrap() {
 function tx_reindex() {
         echo " "
         echo -e "     ${CYAN}Is txreindex required on Daemon start? Will take a long time...Type Yes to confirm"
-        echo "       Yes) Yes"
+        echo "       1) Yes"
         echo -e "       2) No${CN}"
         read -p "     " n
         case $n in
-        Yes) TX=1;;
+        1) TX=1;;
         2) TX=2;;
         *) echo -e "     ${RED}invalid option selected.. :( try again${CN}"  ;tx_reindex;
         esac
@@ -385,7 +385,7 @@ function check_node() {
                 cd ~
                 if [ $(grep -c "READY" "$File") -eq 1 ]; 
                         then
-                        echo -e "${YG}Your Smartnode is "READY ready" to rock! ${CN}"
+                        echo -e "${YG}Your Smartnode is READY ready to rock! ${CN}"
                 elif [ $(grep -c "make sure server is running" "$File") -eq 1 ];
                         then
                        echo -e "${YG}make sure server is running and you are connecting to the correct RPC port ${CN}"
