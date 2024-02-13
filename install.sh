@@ -387,9 +387,15 @@ function check_node() {
                 if [ $(grep -c "READY" "$File") -eq 1 ]; 
                         then
                         echo -e "${YG}READY Ready. Your Smartnode is ready to rock! ${CN}"
-                        else
-                                echo -e "${RED}Something is up, check your .conf setings.${CN}"
-                        fi
+                elif [ $(grep -c "make sure server is running" "$File") -eq 1 ];
+                        then
+                       echo -e "${YG}make sure server is running and you are connecting to the correct RPC port ${CN}"
+                elif [ $(grep -c "WAITING_FOR_PROTX" "$File") -eq 1 ];
+                        then
+                       echo -e "${YG} Waiting for ProTx to appear on-chain ${CN}"
+                else
+                        echo -e "${RED}Something is up, check your .conf setings.${CN}"
+                fi
         
 }
 
