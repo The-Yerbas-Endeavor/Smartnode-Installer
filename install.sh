@@ -403,7 +403,7 @@ function 4204life() {
         echo " "
         echo " "
         echo " "
-        echo -e "     ${YG}INSTALLATION COMPLETE${CN}"
+        echo -e "     ${YG}INSTALLATION FINISHED${CN}"
         echo " "
 }
 
