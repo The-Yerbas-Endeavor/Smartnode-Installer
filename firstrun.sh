@@ -107,5 +107,6 @@ function install_packages() {
 
 #MAIN
 
+yerbas_title
 install_packages
 create_swap
