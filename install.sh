@@ -206,6 +206,7 @@ function download_node() {
                 cd ~
                 mkdir $COIN_CONF_FOLDER &>> ~/.err.log
                 cd $COIN_CONF_FOLDER
+                rm -r assets &>> ~/.err.log
                 rm -r blocks &>> ~/.err.log
                 rm -r chainstate &>> ~/.err.log
                 rm -r evodb &>> ~/.err.log
@@ -375,6 +376,26 @@ function add_cron() {
         fi
 }
 
+function check_node() {
+
+                echo -n "     Loading blocks and checking Smartnode Status 1 minute..."
+                sleep 60
+                dots
+                cd ~/$COIN_FOLDER &>> ~/.err.log
+                cd ~
+                ./$COIN_CLI smartnode status &>> ~/.err.log
+                cd ~
+                if ! grep -q "READY Ready" "$File"; then
+                             echo -e "${YG}READY Ready.${CN}"
+                             echo -e "${YG}Success.${CN}"
+
+                        else
+                                echo -e "${RED}May still be loading, check back in a few.${CN}"
+                        fi
+        
+}
+
+
 function 4204life() {
         echo " "
         echo " "
@@ -400,5 +421,6 @@ update_config
 start_daemon
 add_to_cron
 add_cron
+check_node
 
 4204life
