@@ -58,7 +58,7 @@ function yerbas_title() {
 
         echo ""
         echo ""
-        echo "     $COIN_NAME install script .... created and maintained by Azrelix"
+        echo "     $COIN_NAME install script .... created by Azrelix"
         echo ""
         rm .err.log &>> ~/.err.log
         touch ~/.err.log
