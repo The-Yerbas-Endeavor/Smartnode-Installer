@@ -11,7 +11,7 @@ NC='\033[0m'
 STOP='\e[0m'
 ADDUSER=''
 
-function adduser(){
+function adduser() {
     echo -e "${YELLOW}Add a new user{NC}" && sleep 1
     read -p "     New User Name: " ADDUSER
     adduser $ADDUSER
