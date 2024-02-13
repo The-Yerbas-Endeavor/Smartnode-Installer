@@ -212,24 +212,19 @@ function download_node() {
         dots
         if [ $osType == "x86_64" ] && [ $VERSION_ID == "22.04" ] 
                 then
-                mkdir temp
-                curl -L $WALLET_TAR_U_22 | tar xz -C ./temp
-                mv temp/* ~/
-                rm -r temp
+                mkdir yerbas-build
+                curl -L $WALLET_TAR_U_22 | tar xz -C /yerbas-build
 
         elif [ $osType == "x86_64" ] && [ $VERSION_ID == "20.04" ]
                 then
-                mkdir temp
-                curl -L $WALLET_TAR_U_20 | tar xz -C ./temp
-                mv temp/* ~/
-                rm -r temp
+                mkdir yerbas-build
+                curl -L $WALLET_TAR_U_20 | tar xz -C /yerbas-build
 
         elif [ $osType == "aarch64" ]
                 then
-                mkdir temp
-                curl -L $WALLET_TAR_ARM_64 | tar xz -C ./temp
-                mv temp/* ~/
-                rm -r temp
+                mkdir yerbas-build
+                curl -L $WALLET_TAR_ARM_64 | tar xz -C /yerbas-build
+
         fi
         echo -e "${YG}Success.${CN}"
         echo -n "     Cleaing up"
