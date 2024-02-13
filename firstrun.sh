@@ -55,9 +55,14 @@ function install_packages() {
                 logpath = /var/log/auth.log
                 maxretry = 3" | sudo tee -a /etc/fail2ban/jail.local
                 echo -e "${YELLOW}Packages complete...${NC}"
+                sudo reboot
           else
                 echo -n "     Skipping Packages update"
                 dots
                 echo -e "${YELLOW}Skipped.${CN}"
         fi
 }
+
+#MAIN
+install_packages
+create_swap
