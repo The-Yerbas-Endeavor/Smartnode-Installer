@@ -415,6 +415,7 @@ clear
 
 yerbas_title
 install_type
+install_packages
 power_cache
 bootstrap
 detect_os
