@@ -365,10 +365,6 @@ function update_config () {
         fi
 }
 
-function install_depends() {
-        sudo apt install unzip jq -y
-}
-
 function add_cron() {
         if [ $AC == 1 ]
                 then
