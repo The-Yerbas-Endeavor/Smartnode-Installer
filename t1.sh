@@ -25,8 +25,17 @@ function add() {
 }
 
 function adduser() {
-    echo -e "${YELLOW}Add a new user{NC}" && sleep 1
+    if [ $ADD == 1 ]
+        then
+    echo -e "${YELLOW}Add a new user ${NC}" && sleep 1
     read -p "     New User Name: " ADDUSER
+    if ! [ -z $ADDUSER ]
+                then
+                adduser $ADDUSER
+                else 
+                sleep 10
+                fi
+
 }
 
 #MAIN
