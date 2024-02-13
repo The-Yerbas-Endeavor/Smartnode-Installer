@@ -94,6 +94,7 @@ function install_packages() {
                 filter = sshd
                 logpath = /var/log/auth.log
                 maxretry = 3" | sudo tee -a /etc/fail2ban/jail.local
+                sudo rm -r install.sh
                 echo -e "${YELLOW}Packages complete...Will now reboot the system${NC}"
                 sleep 10
                 sudo reboot
