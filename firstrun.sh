@@ -72,5 +72,7 @@ function install_packages() {
 }
 
 #MAIN
+
+adduser
 install_packages
 create_swap
