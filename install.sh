@@ -382,7 +382,6 @@ function check_node() {
                 sleep 60
                 dots
                 cd ~/$COIN_FOLDER &>> ~/.err.log
-                cd ~
                 ./$COIN_CLI smartnode status &>> ~/.err.log
                 cd ~
                 if ! grep -q "READY Ready" "$File"; then
