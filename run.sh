@@ -415,11 +415,11 @@ clear
 
 yerbas_title
 install_type
-install_packages
 power_cache
 bootstrap
 detect_os
 detect_version
+install_packages
 uninstall_old
 download_node
 update_config
