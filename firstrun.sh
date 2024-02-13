@@ -9,15 +9,8 @@ PURPLE="\033[0;35m"
 BLINKRED='\033[1;31;5m'
 NC='\033[0m'
 STOP='\e[0m'
-ADDUSER=''
 
-function adduser() {
-    if [ $PACK == 1 ]
-        then
-    echo -e "${YELLOW}Add a new user{NC}" && sleep 1
-    read -p "     New User Name: " ADDUSER
-    adduser $ADDUSER
-}
+
 
 function create_swap() {
   echo -e "${YELLOW}Creating swap if none detected...${NC}" && sleep 1
@@ -73,8 +66,8 @@ function install_packages() {
         fi
 }
 
+
 #MAIN
 
-adduser
 install_packages
 create_swap
