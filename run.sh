@@ -124,21 +124,6 @@ function detect_version() {
         fi
 }
 
-function create_swap() {
-  echo -e "${YELLOW}Creating swap if none detected...${NC}" && sleep 1
-  if ! grep -q "swapfile" /etc/fstab; then
-    if whiptail --yesno "No swapfile detected would you like to create one?" 8 54; then
-      sudo fallocate -l 4G /swapfile
-      sudo chmod 600 /swapfile
-      sudo mkswap /swapfile
-      sudo swapon /swapfile
-      echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-      echo -e "${YELLOW}Created ${SEA}4G${YELLOW} swapfile${NC}"
-    fi
-  fi
-  sleep 1
-}
-
 function install_packages() { 
         echo -e "     ${CYAN}Install firts time packages? Need's sudo privlages to do so!"
         echo "       1) Yes"
@@ -152,23 +137,7 @@ function install_packages() {
         echo " "
         if [ $PACK == 1 ]
                 then
-        echo -e "${YELLOW}Installing Packages...${NC}"
-                sudo apt-get update -y
-                sudo apt-get upgrade -y
-                sudo apt-get install nano htop pwgen figlet unzip curl jq fail2ban -y
-                sudo apt install ufw -y
-                sudo ufw default deny incoming
-                sudo ufw default allow outgoing
-                sudo ufw allow ssh
-                sudo ufw allow 15420/tcp
-                sudo ufw enable
-                echo "[sshd]
-                enabled = true
-                port = 22
-                filter = sshd
-                logpath = /var/log/auth.log
-                maxretry = 3" | sudo tee -a /etc/fail2ban/jail.local
-                echo -e "${YELLOW}Packages complete...${NC}"
+                wget -q https://raw.githubusercontent.com/The-Yerbas-Endeavor/Smartnode-Installer/main/firstrun.sh && bash firstrun.sh
           else
                 echo -n "     Skipping Packages update"
                 dots
@@ -213,8 +182,9 @@ function download_node() {
         if [ $osType == "x86_64" ] && [ $VERSION_ID == "22.04" ] 
                 then
                 mkdir temp
+                mkdir yerbas-build
                 curl -L $WALLET_TAR_U_22 | tar xz -C ./temp;
-                mv temp/* ~/
+                mv temp/* ~/yerbas-build/
                 rm -r temp
 
         elif [ $osType == "x86_64" ] && [ $VERSION_ID == "20.04" ]
