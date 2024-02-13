@@ -349,7 +349,6 @@ function update_config () {
                 else 
                         echo rpcport=9494 >> ~/$COIN_CONF_FOLDER/$COIN_CONF_FILE
                 fi
-
                 if ! [ -z $NODE_IP ]
                 then
                         echo bind=$NODE_IP >> ~/$COIN_CONF_FOLDER/$COIN_CONF_FILE
@@ -386,7 +385,7 @@ function check_node() {
                 cd ~
                 if [ $(grep -c "READY" "$File") -eq 1 ]; 
                         then
-                        echo -e "${YG}READY Ready. Your Smartnode is ready to rock! ${CN}"
+                        echo -e "${YG}Your Smartnode is "READY ready" to rock! ${CN}"
                 elif [ $(grep -c "make sure server is running" "$File") -eq 1 ];
                         then
                        echo -e "${YG}make sure server is running and you are connecting to the correct RPC port ${CN}"
