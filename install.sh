@@ -163,14 +163,14 @@ function download_node() {
                 mkdir temp
                 mkdir yerbas-build
                 curl -L $WALLET_TAR_U_22 | tar xz -C ./temp;
-                mv temp/* ~/yerbas-build/
+                mv temp/* ~/
                 rm -r temp
 
         elif [ $osType == "x86_64" ] && [ $VERSION_ID == "20.04" ]
                 then
                 mkdir temp
                 curl -L $WALLET_TAR_U_20 | tar xz -C ./temp;
-                mv temp/* ~/
+                mv temp/* ~/yerbas-build/
                 rm -r temp
 
         elif [ $osType == "aarch64" ]
