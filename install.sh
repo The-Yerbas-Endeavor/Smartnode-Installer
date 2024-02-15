@@ -379,8 +379,8 @@ function add_cron() {
 
 function check_node() {
 
-                echo -n "     Loading blocks and checking Smartnode Status. Wait 1 minute. Roll one up"
-                sleep 60
+                echo -n "     Loading blocks and checking Smartnode Status. Wait 2 minute. Roll one up"
+                sleep 120
                 dots
                 cd ~/$COIN_FOLDER &>> ~/.err.log
                 ./$COIN_CLI smartnode status &>> ~/.err.log
