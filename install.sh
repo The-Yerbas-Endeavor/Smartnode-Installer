@@ -161,7 +161,6 @@ function download_node() {
         if [ $osType == "x86_64" ] && [ $VERSION_ID == "22.04" ] 
                 then
                 mkdir temp
-                mkdir yerbas-build
                 curl -L $WALLET_TAR_U_22 | tar xz -C ./temp;
                 mv temp/* ~/
                 rm -r temp
@@ -170,7 +169,7 @@ function download_node() {
                 then
                 mkdir temp
                 curl -L $WALLET_TAR_U_20 | tar xz -C ./temp;
-                mv temp/* ~/yerbas-build/
+                mv temp/* ~/
                 rm -r temp
 
         elif [ $osType == "aarch64" ]
