@@ -162,21 +162,21 @@ function download_node() {
                 then
                 mkdir temp
                 curl -L $WALLET_TAR_U_22 | tar xz -C ./temp;
-                mv temp/* ~/
+                mv -f temp/* ~/
                 rm -r temp
 
         elif [ $osType == "x86_64" ] && [ $VERSION_ID == "20.04" ]
                 then
                 mkdir temp
                 curl -L $WALLET_TAR_U_20 | tar xz -C ./temp;
-                mv temp/* ~/
+                mv -f temp/* ~/
                 rm -r temp
 
         elif [ $osType == "aarch64" ]
                 then
                 mkdir temp
                 curl -L $WALLET_TAR_ARM_64 | tar xz -C ./temp;
-                mv temp/* ~/
+                mv -f temp/* ~/
                 rm -r temp
 
         fi
