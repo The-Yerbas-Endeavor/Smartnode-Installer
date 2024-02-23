@@ -79,9 +79,9 @@ function install_packages() {
         if [ $PACK == 1 ]
                 then
         echo -e "${YELLOW}Installing Packages...${NC}"
-                sudo apt-get update -y
-                sudo apt-get upgrade -y
-                sudo apt-get install nano htop pwgen figlet unzip curl jq fail2ban -y
+                sudo apt update -y
+                sudo apt upgrade -y
+                sudo apt install nano htop pwgen figlet unzip curl jq fail2ban -y
                 sudo apt install ufw -y
                 sudo ufw default deny incoming
                 sudo ufw default allow outgoing
