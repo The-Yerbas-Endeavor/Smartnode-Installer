@@ -48,6 +48,21 @@ function dots(){
         read -t 0.25 -p ". "
 }
 
+function create_swap() {
+  echo -e "${YELLOW}Creating 6G swap if none detected...${NC}" && sleep 1
+  if ! grep -q "swapfile" /etc/fstab; then
+    if whiptail --yesno "No swapfile detected would you like to create one?" 8 54; then
+      sudo fallocate -l 6G /swapfile
+      sudo chmod 600 /swapfile
+      sudo mkswap /swapfile
+      sudo swapon /swapfile
+      echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+      echo -e "${YELLOW}Created ${SEA}4G${YELLOW} swapfile${NC}"
+    fi
+  fi
+  sleep 5
+}
+
 function install_packages() { 
         echo -e "     ${CYAN}Install firts time packages? Need's sudo privlages to do so!"
         echo "       1) Yes"
@@ -88,24 +103,10 @@ function install_packages() {
         fi
 }
 
-function create_swap() {
-  echo -e "${YELLOW}Creating swap if none detected...${NC}" && sleep 1
-  if ! grep -q "swapfile" /etc/fstab; then
-    if whiptail --yesno "No swapfile detected would you like to create one?" 8 54; then
-      sudo fallocate -l 6G /swapfile
-      sudo chmod 600 /swapfile
-      sudo mkswap /swapfile
-      sudo swapon /swapfile
-      echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-      echo -e "${YELLOW}Created ${SEA}4G${YELLOW} swapfile${NC}"
-    fi
-  fi
-  sleep 1
-}
-
 #MAIN
 
 yerbas_title
-install_packages
 create_swap
+install_packages
+
 
