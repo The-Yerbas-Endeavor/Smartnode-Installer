@@ -49,19 +49,15 @@ function dots(){
 }
 
 function create_swap() {
-  echo -e "${YELLOW}Creating 6G swap if none detected...${NC}" && sleep 1
-  if ! grep -q "swapfile" /etc/fstab; then
-    if whiptail --yesno "No swapfile detected would you like to create one?" 8 54; then
+  echo -e "${YELLOW}Creating 6G swap...${NC}" && sleep 1
       sudo swapoff /swapfile
       sudo fallocate -l 6G /swapfile
       sudo chmod 600 /swapfile
       sudo mkswap /swapfile
       sudo swapon /swapfile
       echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-      echo -e "${YELLOW}Created ${SEA}4G${YELLOW} swapfile${NC}"
-    fi
-  fi
-  sleep 5
+      echo -e "${YELLOW}Created ${SEA}6G${YELLOW} swapfile${NC}"
+	sleep 5
 }
 
 function install_packages() { 
