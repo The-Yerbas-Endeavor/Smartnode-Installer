@@ -52,6 +52,7 @@ function create_swap() {
   echo -e "${YELLOW}Creating 6G swap if none detected...${NC}" && sleep 1
   if ! grep -q "swapfile" /etc/fstab; then
     if whiptail --yesno "No swapfile detected would you like to create one?" 8 54; then
+      sudo swapoff /swapfile
       sudo fallocate -l 6G /swapfile
       sudo chmod 600 /swapfile
       sudo mkswap /swapfile
