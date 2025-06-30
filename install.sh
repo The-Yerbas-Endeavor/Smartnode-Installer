@@ -107,7 +107,10 @@ function detect_os() {
 function detect_version() {
         echo -n "     Detecting version"
         dots
-        if [ $VERSION_ID == "22.04" ]
+        if [ $VERSION_ID == "24.04" ]
+                then
+                echo -e "${YG}$VERSION_ID system detected.${CN}"
+        elif [ $VERSION_ID == "22.04" ]
                 then
                 echo -e "${YG}$VERSION_ID system detected.${CN}"
         elif [ $VERSION_ID == "20.04" ]
