@@ -62,8 +62,8 @@ function create_swap() {
 
 function install_packages() { 
         echo -e "     ${CYAN}Install firts time packages? Need's sudo privlages to do so!"
-        echo "       1) No${CN}"
-        echo -e "       2) Yes"
+        echo "       1) Yes"
+        echo -e "       2) No${CN}"
         read -p "     " n
         case $n in
         1) PACK=1;;
@@ -71,7 +71,7 @@ function install_packages() {
         *) echo -e "     ${RED}invalid option selected.. :( try again${CN}"  ;packages;
         esac
         echo " "
-        if [ $PACK == 2 ]
+        if [ $PACK == 1 ]
                 then
         echo -e "${YELLOW}Installing Packages...${NC}"
                 sudo apt update -y
