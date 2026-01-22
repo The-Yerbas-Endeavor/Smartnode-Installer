@@ -8,8 +8,8 @@ COIN_CLI='yerbas-cli'
 COIN_TX='yerbas-tx'
 COIN_URL='https://github.com/The-Yerbas-Endeavor/yerbas/releases'
 WALLET_TAR_ARM_64=$(curl -s https://api.github.com/repos/The-Yerbas-Endeavor/yerbas/releases/latest | jq -r '.assets[] | select(.name|test("arm64.")) | .browser_download_url')
-WALLET_TAR_U_20=$(curl -s https://api.github.com/repos/The-Yerbas-Endeavor/yerbas/releases/latest | jq -r '.assets[] | select(.name|test("ubuntu20.")) | .browser_download_url')
 WALLET_TAR_U_22=$(curl -s https://api.github.com/repos/The-Yerbas-Endeavor/yerbas/releases/latest | jq -r '.assets[] | select(.name|test("ubuntu22.")) | .browser_download_url')
+WALLET_TAR_U_24=$(curl -s https://api.github.com/repos/The-Yerbas-Endeavor/yerbas/releases/latest | jq -r '.assets[] | select(.name|test("ubuntu24.")) | .browser_download_url')
 COIN_URL_POWER='https://github.com/The-Yerbas-Endeavor/YERB-Bootstrap/releases/download/1.0.0.0/powcache.dat'
 COIN_URL_BOOT='https://github.com/The-Yerbas-Endeavor/YERB-Bootstrap/releases/download/1.0.0.0/bootstrap.zip'
 COIN_VERSION_NAME="$(curl -sL https://api.github.com/repos/The-Yerbas-Endeavor/yerbas/releases/latest | jq -r ".tag_name")"
@@ -113,9 +113,6 @@ function detect_version() {
         elif [ $VERSION_ID == "22.04" ]
                 then
                 echo -e "${YG}$VERSION_ID system detected.${CN}"
-        elif [ $VERSION_ID == "20.04" ]
-                then
-                echo -e "${YG}$VERSION_ID system detected.${CN}"
         elif [ $VERSION_ID == "aarch64" ]
                 then
                 echo -e "${YG}$VERSION_ID system detected.${CN}"
@@ -161,19 +158,19 @@ function uninstall_old() {
 function download_node() {
         echo -n "     Fetching $COIN_NAME $COIN_VERSION_NAME"
         dots
-        if [ $osType == "x86_64" ] && [ $VERSION_ID == "22.04" ] 
+        if [ $osType == "x86_64" ] && [ $VERSION_ID == "24.04" ] 
+                then
+                mkdir temp
+                rm -r $COIN_FOLDER &>> ~/.err.log
+                curl -L $WALLET_TAR_U_24 | tar xz -C ./temp;
+                mv temp/* ~/
+                rm -r temp
+
+        elif [ $osType == "x86_64" ] && [ $VERSION_ID == "22.04" ] 
                 then
                 mkdir temp
                 rm -r $COIN_FOLDER &>> ~/.err.log
                 curl -L $WALLET_TAR_U_22 | tar xz -C ./temp;
-                mv temp/* ~/
-                rm -r temp
-
-        elif [ $osType == "x86_64" ] && [ $VERSION_ID == "20.04" ]
-                then
-                mkdir temp
-                rm -r $COIN_FOLDER &>> ~/.err.log
-                curl -L $WALLET_TAR_U_20 | tar xz -C ./temp;
                 mv temp/* ~/
                 rm -r temp
 
