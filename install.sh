@@ -107,7 +107,10 @@ function detect_os() {
 function detect_version() {
         echo -n "     Detecting version"
         dots
-        if [ $VERSION_ID == "24.04" ]
+        if [ $VERSION_ID == "26.04" ]
+                then
+                echo -e "${YG}$VERSION_ID system detected.${CN}"
+        elif [ $VERSION_ID == "24.04" ]
                 then
                 echo -e "${YG}$VERSION_ID system detected.${CN}"
         elif [ $VERSION_ID == "22.04" ]
@@ -158,7 +161,15 @@ function uninstall_old() {
 function download_node() {
         echo -n "     Fetching $COIN_NAME $COIN_VERSION_NAME"
         dots
-        if [ $osType == "x86_64" ] && [ $VERSION_ID == "24.04" ] 
+        if [ $osType == "x86_64" ] && [ $VERSION_ID == "26.04" ] 
+                then
+                mkdir temp
+                rm -r $COIN_FOLDER &>> ~/.err.log
+                curl -L $WALLET_TAR_U_26 | tar xz -C ./temp;
+                mv temp/* ~/
+                rm -r temp
+
+        elif [ $osType == "x86_64" ] && [ $VERSION_ID == "24.04" ] 
                 then
                 mkdir temp
                 rm -r $COIN_FOLDER &>> ~/.err.log
