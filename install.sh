@@ -105,22 +105,44 @@ EOF
 }
 
 create_swap() {
-    local size_gb=4
+    local size_gb
+
+    echo
+    echo -e "${CYAN}Swap File Configuration${CN}"
+
+    while true; do
+        read -rp "Enter swap size in GB [4]: " size_gb
+        size_gb="${size_gb:-4}"
+
+        if [[ "$size_gb" =~ ^[1-9][0-9]*$ ]]; then
+            break
+        fi
+
+        echo -e "${RED}Please enter a valid whole number (1 or greater).${CN}"
+    done
+
     if swapon --show=NAME --noheadings | grep -qx '/swapfile'; then
-        echo "Existing /swapfile is active; leaving it unchanged."
+        echo -e "${YELLOW}An active /swapfile already exists. Leaving it unchanged.${CN}"
         return
     fi
-    if [[ -e /swapfile ]]; then
-        echo "Existing /swapfile found; leaving it unchanged."
+
+    if [[ -f /swapfile ]]; then
+        echo -e "${YELLOW}/swapfile already exists. Leaving it unchanged.${CN}"
         return
     fi
-    echo "Creating ${size_gb}G swap file..."
-    fallocate -l "${size_gb}G" /swapfile
-    chmod 600 /swapfile
-    mkswap /swapfile
-    swapon /swapfile
-    grep -qF '/swapfile none swap sw 0 0' /etc/fstab ||
-        echo '/swapfile none swap sw 0 0' >> /etc/fstab
+
+    echo -e "${YELLOW}Creating ${size_gb} GB swap file...${CN}"
+
+    sudo fallocate -l "${size_gb}G" /swapfile
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
+
+    if ! grep -q '^/swapfile ' /etc/fstab; then
+        echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab >/dev/null
+    fi
+
+    echo -e "${YG}Successfully created a ${size_gb} GB swap file.${CN}"
 }
 
 valid_username() {
